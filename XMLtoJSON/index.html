@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>JSON -> XML 변환 및 유연한 표 표시</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f9;
+        }
+        #controls {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+        h2 { color: #333; }
+        
+        /* 표 스타일 */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            padding: 10px;
+            text-align: left;
+        }
+        /* RecipeManager (다열) 표 스타일 */
+        .data-table th {
+            background-color: #4CAF50; 
+            color: white;
+        }
+        /* SensorData (2열) 표 스타일 */
+        .keyval-table th {
+            background-color: #2196F3;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        /* XML 출력 영역 스타일 */
+        #xml-output {
+            margin-top: 30px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            background-color: #f0f0f5;
+            white-space: pre-wrap;
+            font-family: monospace;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>JSON 파일 변환 및 유연한 분석</h1>
+    
+    <div id="controls">
+        <h2>📂 JSON 파일 선택</h2>
+        <input type="file" id="json-input" accept=".json">
+        <p style="font-size: 0.9em; color: #555;">(RecipeManager 또는 SensorData 구조의 JSON 파일을 선택해주세요.)</p>
+    </div>
+
+    <div id="table-container">
+        <h2>📋 데이터 분석 결과</h2>
+        <p>파일을 선택하면 데이터 구조에 맞는 표가 나타납니다.</p>
+    </div>
+    
+    <h2>📄 변환된 XML 전문</h2>
+    <div id="xml-output">
+        XML 결과물이 여기에 표시됩니다.
+    </div>
+
+    <script>
+        document.getElementById('json-input').addEventListener('change', handleFileSelect);
+
+        // ----------------------------------------------------------------------------------
+        // 1. 파일 선택 이벤트 처리
+        // ----------------------------------------------------------------------------------
+        function handleFileSelect(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                const jsonString = e.target.result;
+                const container = document.getElementById('table-container');
+                container.innerHTML = '<h2>📋 데이터 분석 결과</h2>';
+                
+                try {
+                    const dataObject = JSON.parse(jsonString);
+                    
+                    // JSON -> XML 변환 및 출력
+                    const xmlString = convertJsonToXml(dataObject);
+                    document.getElementById('xml-output').textContent = xmlString; 
+                    
+                    // 표 생성을 위한 데이터 추출 및 형식 판별
+                    analyzeAndCreateTable(dataObject);
+
+                } catch (error) {
+                    alert(`❌ 파일 처리 중 오류 발생: ${error.message}\n콘솔을 확인하세요.`);
+                    console.error("파일 처리 오류:", error);
+                    document.getElementById('xml-output').textContent = `오류: ${error.message}`;
+                    container.innerHTML += '<p style="color:red;">데이터 로드 및 처리 중 오류 발생.</p>';
+                }
+            };
+
+            reader.readAsText(file);
+        }
+        
+        /**
+         * JSON 객체를 분석하여 어떤 표를 생성할지 결정합니다.
+         */
+        function analyzeAndCreateTable(dataObject) {
+            // 1. RecipeManager 형식 확인
+            if (dataObject.RecipeManager && Array.isArray(dataObject.RecipeManager.Recipe)) {
+                // Recipe 배열이 있는 경우 (다열 표 생성)
+                createDataTable(dataObject.RecipeManager.Recipe, 'RecipeManager.Recipe');
+                return;
+            }
+
+            // 2. SensorData 형식 확인
+            if (dataObject.SensorData && dataObject.SensorData.Sensor && typeof dataObject.SensorData.Sensor === 'object') {
+                // Sensor 객체가 있는 경우 (2열 Key-Value 표 생성)
+                createKeyValTable(dataObject.SensorData.Sensor, 'SensorData.Sensor');
+                return;
+            }
+            
+            // 3. 기타 단일 루트 객체 처리
+            const rootKey = Object.keys(dataObject)[0];
+            if (rootKey && typeof dataObject[rootKey] === 'object' && !Array.isArray(dataObject[rootKey])) {
+                // 최상위 객체 아래에 또 다른 단일 객체가 있을 경우 (SensorData와 유사)
+                createKeyValTable(dataObject[rootKey], rootKey);
+                return;
+            }
+
+            // 4. 처리 불가
+            document.getElementById('table-container').innerHTML += '<p>데이터 구조가 예상했던 RecipeManager 또는 SensorData 형식이 아닙니다.</p>';
+        }
+
+        // ----------------------------------------------------------------------------------
+        // 2. JSON 객체를 XML 문자열로 변환 (재귀 함수)
+        // ----------------------------------------------------------------------------------
+
+        function convertJsonToXml(jsonObj) {
+            let xml = '';
+            xml += '<?xml version="1.0" standalone="yes"?>\n'; 
+            
+            const rootKey = Object.keys(jsonObj)[0];
+            xml += convertObjectToXml(jsonObj, '');
+            
+            // XML 선언을 제외하고 최상위 태그만 반환되도록 조정
+            return xml.trim();
+        }
+
+        function convertObjectToXml(obj, indent) {
+            let xml = '';
+
+            for (const key in obj) {
+                if (Object.prototype.hasOwnProperty.call(obj, key)) {
+                    const value = obj[key];
+                    
+                    if (Array.isArray(value)) {
+                        // 값이 배열인 경우 (Recipe 배열)
+                        value.forEach(item => {
+                            // 배열 요소는 부모 키(Recipe)의 태그를 사용
+                            xml += `${indent}<${key}>\n`;
+                            xml += convertObjectToXml(item, indent + '  '); 
+                            xml += `${indent}</${key}>\n`;
+                        });
+                        
+                    } else if (typeof value === 'object' && value !== null) {
+                        // 값이 객체인 경우 (RecipeManager, Sensor, SensorData)
+                        xml += `${indent}<${key}>\n`;
+                        xml += convertObjectToXml(value, indent + '  '); // 재귀 호출
+                        xml += `${indent}</${key}>\n`;
+                        
+                    } else {
+                        // 값이 단순 문자열/숫자인 경우
+                        xml += `${indent}<${key}>${value}</${key}>\n`;
+                    }
+                }
+            }
+            return xml;
+        }
+
+        // ----------------------------------------------------------------------------------
+        // 3. 표 생성 함수
+        // ----------------------------------------------------------------------------------
+        
+        /**
+         * 3-1. 배열 데이터를 기반으로 다열 표를 생성합니다. (RecipeManager 형식)
+         */
+        function createDataTable(data, title) {
+            const container = document.getElementById('table-container');
+
+            // 1. 모든 객체의 키를 모아 헤더를 결정합니다.
+            let headers = new Set();
+            data.forEach(item => {
+                Object.keys(item).forEach(key => headers.add(key));
+            });
+            headers = Array.from(headers);
+
+            let html = `<h2>📋 데이터 분석 결과 (${title})</h2>`;
+            html += '<table class="data-table"><thead><tr>';
+
+            // 2. 표 헤더(<th>) 생성
+            headers.forEach(header => {
+                html += `<th>${header}</th>`;
+            });
+            html += '</tr></thead><tbody>';
+
+            // 3. 표 행(<tr>)과 셀(<td>) 생성
+            data.forEach(item => {
+                html += '<tr>';
+                headers.forEach(header => {
+                    const cellValue = item[header] !== undefined ? item[header] : '-';
+                    html += `<td>${cellValue}</td>`;
+                });
+                html += '</tr>';
+            });
+
+            html += '</tbody></table>';
+            container.innerHTML = html;
+        }
+        
+        /**
+         * 3-2. Key-Value 쌍으로 이루어진 객체를 2열 표로 생성합니다. (SensorData 형식)
+         */
+        function createKeyValTable(data, title) {
+            const container = document.getElementById('table-container');
+            let html = `<h2>📋 설정 항목 표 (${title})</h2>`;
+            html += '<table class="keyval-table"><thead><tr>';
+            html += '<th>설정 항목 (Key)</th><th>값 (Value)</th>';
+            html += '</tr></thead><tbody>';
+
+            for (const key in data) {
+                if (Object.prototype.hasOwnProperty.call(data, key)) {
+                    const value = data[key];
+                    html += '<tr>';
+                    html += `<td>${key}</td>`;
+                    html += `<td>${value}</td>`;
+                    html += '</tr>';
+                }
+            }
+            
+            html += '</tbody></table>';
+            container.innerHTML = html;
+        }
+    </script>
+</body>
+</html>
