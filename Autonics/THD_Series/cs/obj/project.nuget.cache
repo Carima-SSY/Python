@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "9wrOnHtHg8kY+GAz2wkG8itp90/rhsgJiFv0AgzM/tsiD00dNfS2JzA9AgpQeo9ifamTOoCXmJFZJNgyKPolng==",
-  "success": false,
+  "dgSpecHash": "+0EuhR3E6ft9j5c1i38w2ubtzLp+i1zA6TJFP11+9CJz+CMBKu+WbGLBWh0npoMm0FAdsw1SMH0FIA+f+KnO/g==",
+  "success": true,
   "projectFilePath": "/Users/carima/Documents/Programming/GitConn/Python/Autonics/THD_Series/cs/cs.csproj",
   "expectedPackageFiles": [
     "/Users/carima/.nuget/packages/nmodbus/3.0.81/nmodbus.3.0.81.nupkg.sha512",
+    "/Users/carima/.nuget/packages/nmodbus.serial/3.0.81/nmodbus.serial.3.0.81.nupkg.sha512",
     "/Users/carima/.nuget/packages/runtime.android-arm.runtime.native.system.io.ports/9.0.10/runtime.android-arm.runtime.native.system.io.ports.9.0.10.nupkg.sha512",
     "/Users/carima/.nuget/packages/runtime.android-arm64.runtime.native.system.io.ports/9.0.10/runtime.android-arm64.runtime.native.system.io.ports.9.0.10.nupkg.sha512",
     "/Users/carima/.nuget/packages/runtime.android-x64.runtime.native.system.io.ports/9.0.10/runtime.android-x64.runtime.native.system.io.ports.9.0.10.nupkg.sha512",
@@ -24,15 +25,5 @@
     "/Users/carima/.nuget/packages/runtime.osx-x64.runtime.native.system.io.ports/9.0.10/runtime.osx-x64.runtime.native.system.io.ports.9.0.10.nupkg.sha512",
     "/Users/carima/.nuget/packages/system.io.ports/9.0.10/system.io.ports.9.0.10.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1101",
-      "level": "Error",
-      "message": "Unable to find package NModbus.SerialPort. No packages exist with this id in source(s): nuget.org",
-      "libraryId": "NModbus.SerialPort",
-      "targetGraphs": [
-        "net8.0"
-      ]
-    }
-  ]
+  "logs": []
 }

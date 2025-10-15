@@ -9,8 +9,8 @@
 
   <ItemGroup>
     <PackageReference Include="NModbus" Version="3.0.81" />
+    <PackageReference Include="NModbus.Serial" Version="3.0.81" />
     <PackageReference Include="System.IO.Ports" Version="9.0.10" />
-    <PackageReference Include="NModbus.SerialPort" Version="3.0.81" />
   </ItemGroup>
 
 </Project>

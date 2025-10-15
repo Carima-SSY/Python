@@ -15,6 +15,23 @@
           }
         }
       },
+      "NModbus.Serial/3.0.81": {
+        "type": "package",
+        "dependencies": {
+          "NModbus": "3.0.81",
+          "System.IO.Ports": "7.0.0"
+        },
+        "compile": {
+          "lib/net6.0/NModbus.Serial.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/NModbus.Serial.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "runtime.android-arm.runtime.native.System.IO.Ports/9.0.10": {
         "type": "package",
         "runtimeTargets": {
@@ -1193,6 +1210,24 @@
         "nmodbus.nuspec"
       ]
     },
+    "NModbus.Serial/3.0.81": {
+      "sha512": "6IISxvysZRaPkUJr52SVLdXqQwtrGtRmOnMbmSsnvjQnTxAUif/NihNC7Zbi4dvzUTDtlg3H7reZIBkUAHupjg==",
+      "type": "package",
+      "path": "nmodbus.serial/3.0.81",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "lib/net46/NModbus.Serial.dll",
+        "lib/net46/NModbus.Serial.xml",
+        "lib/net6.0/NModbus.Serial.dll",
+        "lib/net6.0/NModbus.Serial.xml",
+        "lib/netstandard2.0/NModbus.Serial.dll",
+        "lib/netstandard2.0/NModbus.Serial.xml",
+        "nmodbus.serial.3.0.81.nupkg.sha512",
+        "nmodbus.serial.nuspec"
+      ]
+    },
     "runtime.android-arm.runtime.native.System.IO.Ports/9.0.10": {
       "sha512": "KUeHD0wRFCTS9QHantD5Cv/RzDzVY/mQP1Z/eKLtlX5A5SZvsqeomAoayPdh/QmgSzquoHeIDMAMp8VVU+Xzag==",
       "type": "package",
@@ -1761,7 +1796,7 @@
   "projectFileDependencyGroups": {
     "net8.0": [
       "NModbus >= 3.0.81",
-      "NModbus.SerialPort >= 3.0.81",
+      "NModbus.Serial >= 3.0.81",
       "System.IO.Ports >= 9.0.10"
     ]
   },
@@ -1806,7 +1841,7 @@
             "target": "Package",
             "version": "[3.0.81, )"
           },
-          "NModbus.SerialPort": {
+          "NModbus.Serial": {
             "target": "Package",
             "version": "[3.0.81, )"
           },
@@ -1834,16 +1869,5 @@
         "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.121/PortableRuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1101",
-      "level": "Error",
-      "message": "Unable to find package NModbus.SerialPort. No packages exist with this id in source(s): nuget.org",
-      "libraryId": "NModbus.SerialPort",
-      "targetGraphs": [
-        "net8.0"
-      ]
-    }
-  ]
+  }
 }

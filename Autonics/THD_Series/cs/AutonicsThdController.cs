@@ -3,7 +3,7 @@ using System.IO;
 using System.IO.Ports;
 using NModbus;             
 using NModbus.IO;
-//using NModbus.Serial;
+using NModbus.Serial;
 
 namespace AutonicsThd
 {

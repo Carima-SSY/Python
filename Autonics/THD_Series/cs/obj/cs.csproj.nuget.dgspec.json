@@ -42,7 +42,7 @@
               "target": "Package",
               "version": "[3.0.81, )"
             },
-            "NModbus.SerialPort": {
+            "NModbus.Serial": {
               "target": "Package",
               "version": "[3.0.81, )"
             },
