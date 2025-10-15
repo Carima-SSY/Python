@@ -1,0 +1,75 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/carima/Documents/Programming/GitConn/Python/Autonics/THD_Series/cs/cs.csproj": {}
+  },
+  "projects": {
+    "/Users/carima/Documents/Programming/GitConn/Python/Autonics/THD_Series/cs/cs.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/carima/Documents/Programming/GitConn/Python/Autonics/THD_Series/cs/cs.csproj",
+        "projectName": "cs",
+        "projectPath": "/Users/carima/Documents/Programming/GitConn/Python/Autonics/THD_Series/cs/cs.csproj",
+        "packagesPath": "/Users/carima/.nuget/packages/",
+        "outputPath": "/Users/carima/Documents/Programming/GitConn/Python/Autonics/THD_Series/cs/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/carima/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "NModbus": {
+              "target": "Package",
+              "version": "[3.0.81, )"
+            },
+            "NModbus.SerialPort": {
+              "target": "Package",
+              "version": "[3.0.81, )"
+            },
+            "System.IO.Ports": {
+              "target": "Package",
+              "version": "[9.0.10, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.121/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

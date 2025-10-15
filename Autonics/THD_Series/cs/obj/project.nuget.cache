@@ -1,0 +1,38 @@
+{
+  "version": 2,
+  "dgSpecHash": "9wrOnHtHg8kY+GAz2wkG8itp90/rhsgJiFv0AgzM/tsiD00dNfS2JzA9AgpQeo9ifamTOoCXmJFZJNgyKPolng==",
+  "success": false,
+  "projectFilePath": "/Users/carima/Documents/Programming/GitConn/Python/Autonics/THD_Series/cs/cs.csproj",
+  "expectedPackageFiles": [
+    "/Users/carima/.nuget/packages/nmodbus/3.0.81/nmodbus.3.0.81.nupkg.sha512",
+    "/Users/carima/.nuget/packages/runtime.android-arm.runtime.native.system.io.ports/9.0.10/runtime.android-arm.runtime.native.system.io.ports.9.0.10.nupkg.sha512",
+    "/Users/carima/.nuget/packages/runtime.android-arm64.runtime.native.system.io.ports/9.0.10/runtime.android-arm64.runtime.native.system.io.ports.9.0.10.nupkg.sha512",
+    "/Users/carima/.nuget/packages/runtime.android-x64.runtime.native.system.io.ports/9.0.10/runtime.android-x64.runtime.native.system.io.ports.9.0.10.nupkg.sha512",
+    "/Users/carima/.nuget/packages/runtime.android-x86.runtime.native.system.io.ports/9.0.10/runtime.android-x86.runtime.native.system.io.ports.9.0.10.nupkg.sha512",
+    "/Users/carima/.nuget/packages/runtime.linux-arm.runtime.native.system.io.ports/9.0.10/runtime.linux-arm.runtime.native.system.io.ports.9.0.10.nupkg.sha512",
+    "/Users/carima/.nuget/packages/runtime.linux-arm64.runtime.native.system.io.ports/9.0.10/runtime.linux-arm64.runtime.native.system.io.ports.9.0.10.nupkg.sha512",
+    "/Users/carima/.nuget/packages/runtime.linux-bionic-arm64.runtime.native.system.io.ports/9.0.10/runtime.linux-bionic-arm64.runtime.native.system.io.ports.9.0.10.nupkg.sha512",
+    "/Users/carima/.nuget/packages/runtime.linux-bionic-x64.runtime.native.system.io.ports/9.0.10/runtime.linux-bionic-x64.runtime.native.system.io.ports.9.0.10.nupkg.sha512",
+    "/Users/carima/.nuget/packages/runtime.linux-musl-arm.runtime.native.system.io.ports/9.0.10/runtime.linux-musl-arm.runtime.native.system.io.ports.9.0.10.nupkg.sha512",
+    "/Users/carima/.nuget/packages/runtime.linux-musl-arm64.runtime.native.system.io.ports/9.0.10/runtime.linux-musl-arm64.runtime.native.system.io.ports.9.0.10.nupkg.sha512",
+    "/Users/carima/.nuget/packages/runtime.linux-musl-x64.runtime.native.system.io.ports/9.0.10/runtime.linux-musl-x64.runtime.native.system.io.ports.9.0.10.nupkg.sha512",
+    "/Users/carima/.nuget/packages/runtime.linux-x64.runtime.native.system.io.ports/9.0.10/runtime.linux-x64.runtime.native.system.io.ports.9.0.10.nupkg.sha512",
+    "/Users/carima/.nuget/packages/runtime.maccatalyst-arm64.runtime.native.system.io.ports/9.0.10/runtime.maccatalyst-arm64.runtime.native.system.io.ports.9.0.10.nupkg.sha512",
+    "/Users/carima/.nuget/packages/runtime.maccatalyst-x64.runtime.native.system.io.ports/9.0.10/runtime.maccatalyst-x64.runtime.native.system.io.ports.9.0.10.nupkg.sha512",
+    "/Users/carima/.nuget/packages/runtime.native.system.io.ports/9.0.10/runtime.native.system.io.ports.9.0.10.nupkg.sha512",
+    "/Users/carima/.nuget/packages/runtime.osx-arm64.runtime.native.system.io.ports/9.0.10/runtime.osx-arm64.runtime.native.system.io.ports.9.0.10.nupkg.sha512",
+    "/Users/carima/.nuget/packages/runtime.osx-x64.runtime.native.system.io.ports/9.0.10/runtime.osx-x64.runtime.native.system.io.ports.9.0.10.nupkg.sha512",
+    "/Users/carima/.nuget/packages/system.io.ports/9.0.10/system.io.ports.9.0.10.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1101",
+      "level": "Error",
+      "message": "Unable to find package NModbus.SerialPort. No packages exist with this id in source(s): nuget.org",
+      "libraryId": "NModbus.SerialPort",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    }
+  ]
+}
